@@ -1,0 +1,85 @@
+// change the theme
+$theme-colors: (
+  "primary": #1E7CBF,
+  "danger": #ff4136,
+  "secondary": #E8E8E8,
+  "warning": #ffc107,
+  "success": #26DD6F,
+);
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+li {
+  list-style: none;
+}
+
+p {
+  margin:0;
+}
+
+/* create boostrap table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+}
+
+table thead {
+    height: 40px;
+}
+
+thead tr {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+table tr th {
+    text-align: left;
+}
+
+tbody tr td {
+    height: 30px;
+}
+
+.container-height {
+  height: 100vh;
+}
+
+.container-width {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-not-found, .loading {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading {
+    background-color: #1E7CBF;
+    color: #fff;
+}
+
+.loading img {
+  margin-bottom: 1rem;
+}
+
+.private-header-wrapper {
+    background-color: #1E7CBF;
+    color: #fff;
+}
+
+.form-control {
+  border: none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-radius: unset;
+  border-width: 3px;
+}
