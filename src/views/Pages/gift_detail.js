@@ -1,23 +1,35 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import API from '../../api'
 
 const gift_detail = () => {
   const { id } = useParams()
+
+  const [gift, setGift] = React.useState({})
+
+  React.useEffect(() => {
+    API.getGiftId(id).then(res => {
+      setGift(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [id])
+
   return (
     <>
       <div className='card mb-3'>
         <div className='card-body d-flex justify-content-start'>
           <img
             alt=""
-            src="https://via.placeholder.com/120.png?text=No+Image"
+            src={gift?.gambar || "https://via.placeholder.com/120.png?text=No+Image"}
             style={{ "width": "120px", "height": "120px", "marginRight": "1rem" }}
             className='card-img'
           />
           <div>
-            <h5 className='card-title'> {`GIFT ${id} (Nama Barang)`}</h5>
-            <div className='card-text'> Point : 10 </div>
-            <div className='card-text'> Stock : 10 </div>
+            <h5 className='card-title'> {gift?.nama}</h5>
+            <div className='card-text'> Point : {gift?.harga} </div>
+            <div className='card-text'> Stock : {gift?.stok} </div>
           </div>
         </div>
       </div>

@@ -1,29 +1,41 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom"
+import API from "../../api"
 
 const Klasmen = () => {
   const navigate = useNavigate()
+
+  const [giftData, setGiftData] = React.useState([])
+
+  React.useEffect(() => {
+    API.getGifts().then(res => {
+      setGiftData(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+
   return (
     <>
-      {Array.from(Array(15).keys()).map((idx) => (
+      {giftData?.map((gift, idx) => (
         <div key={idx} className='card mb-3'>
           <div className='card-body d-flex justify-content-start'>
             <img
               alt=""
-              src="https://via.placeholder.com/120.png?text=No+Image"
+              src={gift.gambar || "https://via.placeholder.com/120.png?text=No+Image"}
               style={{ "width": "120px", "height": "120px", "marginRight": "1rem" }}
               className='card-img'
             />
             <div>
-              <h5 className='card-title'> {`GIFT ${idx+1} (Nama Barang)`}</h5>
-              <div className='card-text'> Point : 10 </div>
-              <div className='card-text'> Stock : 10 </div>
-              <button 
-                type='button' 
+              <h5 className='card-title'> {gift?.nama}</h5>
+              <div className='card-text'> Point : {gift?.harga} </div>
+              <div className='card-text'> Stock : {gift?.stok} </div>
+              <button
+                type='button'
                 className='btn btn-warning rounded-pill mt-2 fw-bold'
-                onClick={() => navigate(`/gift/${idx+1}`, { replace: true })}
-              > 
-              GET GIFT 
+                onClick={() => navigate(`/gift/${gift.id}`, { replace: true })}
+              >
+                GET GIFT
               </button>
             </div>
           </div>

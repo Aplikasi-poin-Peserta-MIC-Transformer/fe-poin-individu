@@ -1,13 +1,23 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom"
-import { useAuth } from '../../hooks/useAuth'
+import { useAuthContext } from '../../context/authContext'
+import API from '../../api'
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login } = useAuthContext();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ user: 'has login' });
+    const form = {
+      no_wa: e.target.noWa.value,
+      password: e.target.password.value
+    }
+    API.login(form).then(res => {
+      login(res)
+      navigate("/gift", { replace: true })
+    }).catch(err => {
+      console.log(err)
+    })
   }
   return (
     <div className='private-content-wrapper'>
@@ -15,7 +25,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="noWa" className='form-label fw-bold'>Nomor Handphone</label>
-            <input className='form-control' type="text" name="noWa" id="noWa" defaultValue="user" placeholder="Masukan nomor yang di daftarkan" />
+            <input className='form-control' type="text" name="noWa" id="noWa" defaultValue="081234567890" placeholder="Masukan nomor yang di daftarkan" />
           </div>
           <div className="mb-3">
             <label htmlFor="password" className='form-label fw-bold'>Password</label>

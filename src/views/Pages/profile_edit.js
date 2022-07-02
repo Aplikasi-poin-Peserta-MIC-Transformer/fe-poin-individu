@@ -1,14 +1,25 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import Select from 'react-select';
+import API from '../../api'
+import { useAuthContext } from '../../context/authContext';
 
 const profile_edit = () => {
+  const { user } = useAuthContext();
   const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' },
   ];
   const [selectedOption, setSelectedOption] = useState(options[0]);
+
+  React.useEffect(() => {
+    API.getEvents().then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [user])
 
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -50,7 +61,7 @@ const profile_edit = () => {
           <input className='form-control' type="text" name="noHp" id="noHp" placeholder="Isi No Handphone Anda" />
         </div>
         <div className='d-grid gap-2 mt-4'>
-          <button type="submit" className='btn btn-primary rounded-pill text-white'>Daftar</button>
+          <button type="submit" className='btn btn-primary rounded-pill text-white'>Ubah</button>
         </div>
       </form>
     </>
