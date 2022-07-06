@@ -8,7 +8,7 @@ const Barcode = () => {
   return (
     <div className='d-flex justify-content-center mt-5'>
       <div className='d-block'>
-      <QRCode value={user?.no_wa} size={250} className='d-block mb-3' />
+      <QRCode value={`team/${user?.no_wa}/${user.EventId}`} size={300} className='d-block mb-3' />
         <h2 className='fw-bold d-flex justify-content-center'>{user?.nama}</h2>
       </div>
     </div>
