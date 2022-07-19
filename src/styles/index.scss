@@ -47,8 +47,9 @@ tbody tr td {
 }
 
 .container-width {
-  max-width: 480px;
+  max-width: 400px;
   margin: 0 auto;
+  position: relative;
 }
 
 .page-not-found, .loading {

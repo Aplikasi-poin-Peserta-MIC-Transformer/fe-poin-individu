@@ -5,6 +5,7 @@ import Layout from './components/layout';
 
 const Loading = React.lazy(() => import('./components/loading'));
 
+const Homepage = React.lazy(() => import('./views/home'));
 const Login = React.lazy(() => import('./views/Auth/login'));
 const Register = React.lazy(() => import('./views/Auth/register'));
 
@@ -20,7 +21,7 @@ const ProfileResetPwd = React.lazy(() => import('./views/Pages/profile_reset_pwd
 const MobileView = () => {
   const outlet = useOutlet();
   return (
-    <div className="container-height container-width pb-5 mb-5">{outlet}</div>
+    <div className="container-height container-width">{outlet}</div>
   )
 }
 
@@ -29,6 +30,7 @@ function App() {
     <React.Suspense fallback={<Loading />}>
       <Routes>
         <Route path="/" element={<MobileView />}>
+          {/* <Route path="/" element={<Homepage />} /> */}
           <Route element={<Layout />} >
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

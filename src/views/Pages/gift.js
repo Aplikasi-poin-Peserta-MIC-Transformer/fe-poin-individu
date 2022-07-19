@@ -24,6 +24,7 @@ const Klasmen = () => {
               alt=""
               src={gift.gambar || "https://via.placeholder.com/120.png?text=No+Image"}
               style={{ "width": "120px", "height": "120px", "marginRight": "1rem" }}
+              referrerPolicy="no-referrer"
               className='card-img'
             />
             <div>

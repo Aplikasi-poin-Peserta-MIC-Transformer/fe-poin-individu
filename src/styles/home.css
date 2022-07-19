@@ -1,0 +1,23 @@
+.header-wrapper {
+    background-color: #10817d;
+    padding: 20px;
+    color: #fff;
+    height: 450px;
+    border-radius: 0px 0px 120px 0px;
+}
+
+.header-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%, -50%);
+}
